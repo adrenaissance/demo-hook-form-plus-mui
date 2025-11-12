@@ -1,9 +1,7 @@
 import RadioGroup from '@mui/material/RadioGroup';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 import {RadioItem} from "./RadioItem";
 import {useController, type UseControllerProps} from "react-hook-form";
-import {useCallback, type ChangeEvent} from "react";
+import {useCallback} from "react";
 
 export interface Company {
   id: number,

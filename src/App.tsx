@@ -3,13 +3,20 @@ import {FormProvider, useForm, type SubmitHandler} from "react-hook-form";
 import {DevTool} from "@hookform/devtools";
 import type {Company} from "./components/Rg";
 import RadioButtonsGroup from "./components/Rg";
+import {Input} from "./components/Input";
 
 interface Form {
-  company: Company
+  company: Company|null,
+  firstName: string,
 }
 
 const App=() => {
-  const methods=useForm<Form>();
+  const methods=useForm<Form>({
+    defaultValues: {
+      company: null,
+      firstName: '',
+    }
+  });
   const {handleSubmit, control}=methods;
 
   const companies: Company[]=[
@@ -26,6 +33,7 @@ const App=() => {
     <>
       <FormProvider {...methods}>
         <form onSubmit={handleSubmit(onSubmit)}>
+          <Input rules={{required: 'First name is required'}} name="firstName" label="first name" />
           <RadioButtonsGroup onChange={onChange} name="company" companies={companies} />
           <button type="submit">Submit</button>
         </form>
