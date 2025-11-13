@@ -11,7 +11,6 @@ export interface Company {
 }
 export interface RadioButtonsGroupProps extends UseControllerProps {
   companies: Company[],
-  onChange: (company: Company) => void;
 }
 
 export default function RadioButtonsGroup(props: RadioButtonsGroupProps) {
@@ -20,16 +19,15 @@ export default function RadioButtonsGroup(props: RadioButtonsGroupProps) {
     control: props.control,
     rules: props.rules
   });
-  const {onChange, companies}=props;
+  const {companies}=props;
   const handleChange=useCallback((e: any) => {
     const value=e.target.value;
     const numericValue=parseInt(value);
     const company=companies.find(c => c.id===numericValue);
     if(company) {
       field.onChange(company);
-      onChange(company);
     }
-  }, [companies, onChange]);
+  }, [companies]);
 
   return (
     <RadioGroup
