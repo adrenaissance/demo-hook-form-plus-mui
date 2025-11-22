@@ -6,33 +6,61 @@ import RadioButtonsGroup from "./components/Rg";
 import {Input} from "./components/Input";
 import {save, type CustomFormState} from "./store/features/formSlice";
 import {useAppDispatch} from "./store/hooks";
+import {EMAIL_FIELD, FIRST_NAME_FIELD, LAST_NAME_FIELD, CUSTOM_REFS, useDynamicSchema, type IForm} from "./hooks/useDynamicSchema";
+import {yupResolver} from "@hookform/resolvers/yup";
+import {FieldArray} from "./components/FieldArray";
 
 const App=() => {
-  const methods=useForm<CustomFormState>({
+  const {schema}=useDynamicSchema();
+  const methods=useForm<IForm>({
+    shouldUnregister: false,
+    mode: "onBlur",
     defaultValues: {
-      company: null,
-      firstName: '',
-    }
+      [FIRST_NAME_FIELD]: '',
+      [LAST_NAME_FIELD]: '',
+      [EMAIL_FIELD]: '',
+      [CUSTOM_REFS]: Array.from({length: 3}, () => ({value: ""})),
+    },
+    resolver: yupResolver(schema) as any,
   });
-  const {handleSubmit, control}=methods;
-  const companies: Company[]=[
-    {id: 1, name: "hello world", employees: 100},
-    {id: 2, name: "hello world2", employees: 102},
-    {id: 3, name: "hello world3", employees: 103},
-    {id: 4, name: "hello world4", employees: 104},
-  ];
-  const dispatch=useAppDispatch();
-  const onSubmit: SubmitHandler<CustomFormState>=(data) => {
+  const {handleSubmit, control, formState, register}=methods;
+  // const companies: Company[]=[
+  //   {id: 1, name: "hello world", employees: 100},
+  //   {id: 2, name: "hello world2", employees: 102},
+  //   {id: 3, name: "hello world3", employees: 103},
+  //   {id: 4, name: "hello world4", employees: 104},
+  // ];
+  const onSubmit=(data: any) => {
     console.log(data);
-    dispatch(save(data));
   }
 
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input rules={{required: 'First name is required'}} name="firstName" label="first name" />
+        <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-3 justify-items-center align-items-center">
+          <div className="flex flex-col gap-2">
+            <label htmlFor={FIRST_NAME_FIELD}>first name</label>
+            <input id={FIRST_NAME_FIELD} className="border border-2" {...register(FIRST_NAME_FIELD)} />
+            <p>{formState.errors[FIRST_NAME_FIELD]?.message}</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor={LAST_NAME_FIELD}>last name</label>
+            <input id={LAST_NAME_FIELD} className="border border-2 border-red-500" {...register(LAST_NAME_FIELD)} />
+            <p>{formState.errors[LAST_NAME_FIELD]?.message}</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor={EMAIL_FIELD}>email</label>
+            <input id={EMAIL_FIELD} className="border border-2 border-red-500"{...register(EMAIL_FIELD)} />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <FieldArray name={CUSTOM_REFS} />
+            <p>{formState.errors[EMAIL_FIELD]?.message}</p>
+          </div>
+
+          {/* <Input rules={{required: 'First name is required'}} name="firstName" label="first name" />
           <RadioButtonsGroup name="company" companies={companies} />
+          <button type="submit">Submit</button> */}
           <button type="submit">Submit</button>
         </form>
       </FormProvider>
