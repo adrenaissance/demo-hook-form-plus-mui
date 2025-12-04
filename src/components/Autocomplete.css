@@ -1,0 +1,18 @@
+/* Used for setting the background of the paper */
+.MuiAutocomplete-popper .MuiPaper-root {
+    margin-top: 5px;
+}
+
+/* .MuiAutocomplete-popper .MuiPaper-root {
+    margin-top: 10px; */
+/* background-color: rgb(193, 225, 193) !important; */
+/* } */
+
+/* Used for setting the padding of the whole list box */
+.MuiAutocomplete-popper .MuiAutocomplete-listbox {
+    padding: 24px !important;
+}
+
+.MuiAutocomplete-popper .MuiAutocomplete-option {
+    font-size: 20px;
+}
