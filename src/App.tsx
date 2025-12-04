@@ -90,37 +90,37 @@ const App=() => {
 
   return (
     <ThemeProvider theme={theme}>
-      <G />
 
-      {/* <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-3 justify-items-center align-items-center">
-          <div className="flex flex-col gap-2">
-            <label htmlFor={FIRST_NAME_FIELD}>first name</label>
-            <input id={FIRST_NAME_FIELD} className="border border-2" {...register(FIRST_NAME_FIELD)} />
-            <p>{formState.errors[FIRST_NAME_FIELD]?.message}</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor={LAST_NAME_FIELD}>last name</label>
-            <input id={LAST_NAME_FIELD} className="border border-2 border-red-500" {...register(LAST_NAME_FIELD)} />
-            <p>{formState.errors[LAST_NAME_FIELD]?.message}</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label htmlFor={EMAIL_FIELD}>email</label>
-            <input id={EMAIL_FIELD} className="border border-2 border-red-500"{...register(EMAIL_FIELD)} />
-          </div>
+      <FormProvider {...methods}>
+        <G />
+        {/* <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-3 justify-items-center align-items-center">
+        <div className="flex flex-col gap-2">
+          <label htmlFor={FIRST_NAME_FIELD}>first name</label>
+          <input id={FIRST_NAME_FIELD} className="border border-2" {...register(FIRST_NAME_FIELD)} />
+          <p>{formState.errors[FIRST_NAME_FIELD]?.message}</p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor={LAST_NAME_FIELD}>last name</label>
+          <input id={LAST_NAME_FIELD} className="border border-2 border-red-500" {...register(LAST_NAME_FIELD)} />
+          <p>{formState.errors[LAST_NAME_FIELD]?.message}</p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor={EMAIL_FIELD}>email</label>
+          <input id={EMAIL_FIELD} className="border border-2 border-red-500"{...register(EMAIL_FIELD)} />
+        </div>
 
-          <div className="flex flex-col gap-2">
-            <FieldArray name={CUSTOM_REFS} />
-            <p>{formState.errors[EMAIL_FIELD]?.message}</p>
-          </div> */}
+        <div className="flex flex-col gap-2">
+          <FieldArray name={CUSTOM_REFS} />
+          <p>{formState.errors[EMAIL_FIELD]?.message}</p>
+        </div> */}
 
-      {/* <Input rules={{required: 'First name is required'}} name="firstName" label="first name" />
+        {/* <Input rules={{required: 'First name is required'}} name="firstName" label="first name" />
           <RadioButtonsGroup name="company" companies={companies} />
           <button type="submit">Submit</button> */}
-      {/* <button type="submit">Submit</button> */}
-      {/* </form>
+        {/* <button type="submit">Submit</button> */}
+        {/* </form> */}
       </FormProvider>
-      <DevTool control={control} /> */}
+      <DevTool control={control} />
     </ThemeProvider>
   )
 }

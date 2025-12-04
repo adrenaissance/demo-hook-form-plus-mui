@@ -1,5 +1,6 @@
-import {Autocomplete, Box, MenuItem, Select, TextField, Typography} from "@mui/material"
+import {Box, MenuItem, Select, TextField, Typography} from "@mui/material"
 import {ETextField} from "./ETextField"
+import {CustomAutocomplete} from "./Autocomplete";
 
 export const G=() => {
     const categories=[
@@ -33,6 +34,9 @@ export const G=() => {
                 <ETextField name="delivery" />
             </Box>
             <Box sx={{gridColumn: 'span 4'}}>
+                <CustomAutocomplete name="autocomplete" />
+            </Box>
+            <Box sx={{gridColumn: 'span 4'}}>
                 <ETextField name="phone" />
             </Box>
             <Box sx={{gridColumn: 'span 12', display: 'flex', flexDirection: 'column', gap: 2}}>
@@ -50,16 +54,6 @@ export const G=() => {
                         </MenuItem>
                     ))}
                 </Select>
-            </Box>
-            <Box sx={{gridColumn: 'span 12'}}>
-                <Autocomplete
-                    fullWidth
-                    options={categories}
-                    getOptionLabel={(option) => option.label}
-                    renderInput={(params) => (
-                        <ETextField {...params} name="Category" />
-                    )}
-                />
             </Box>
         </Box>
     )
